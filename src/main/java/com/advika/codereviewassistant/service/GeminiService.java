@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class GeminiService {
 
-    @Value("${gemini.api.key}")
+    @Value("${GEMINI_API_KEY}")
     private String apiKey;
 
 
