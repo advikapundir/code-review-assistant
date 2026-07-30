@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+
+    environment:
+      POSTGRES_DB: codereview
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: spring_backend
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./frontend
+    container_name: react_frontend
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
